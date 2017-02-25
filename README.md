@@ -1,7 +1,7 @@
-# dpizza
+# D'Pizza
 
-Web site for a local restaurant in Merida Venezuela 
-[español] Sitio web restaurante D'Pizza ubicado en Merida Venezuela.
+Web site for D'Pizza restaurant located in Merida Venezuela 
+[español] Sitio web del restaurante D'Pizza ubicado en Merida Venezuela.
 
 This site is mantain by:
 [español] Este sitio es mantenido por:

@@ -1,5 +1,7 @@
 import React from 'react';
 
-const App = () => <div>D'Pizza</div>;
+import Menu from './Menu';
+
+const App = () => <Menu />;
 
 export default App;

@@ -1,11 +1,17 @@
 {
-    "name": "dpizza",
-    "version": "1.0.0",
-    "main": "index.js",
-    "repository": "https://github.com/dpizza/dpizza.github.io.git",
-    "author": "Maria Marcano <mariangemarcano@gmail.com>",
-    "dependencies": {
-        "less": "^2.7.2"
-    },
-    "scripts": { "start": "lessc -x less/bootstrap.less css/bootstrap.css" }
+  "name": "dpizza",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dpizza/dpizza.github.io.git",
+  "author": "Maria Marcano <mariangemarcano@gmail.com>",
+  "dependencies": {
+    "less": "^2.7.2"
+  },
+  "scripts": {
+    "start": "lessc -x less/bootstrap.less css/bootstrap.css"
+  },
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-plugin-react": "^6.10.0"
+  }
 }

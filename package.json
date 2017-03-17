@@ -1,17 +1,26 @@
 {
-  "name": "dpizza",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/dpizza/dpizza.github.io.git",
-  "author": "Maria Marcano <mariangemarcano@gmail.com>",
-  "dependencies": {
-    "less": "^2.7.2"
-  },
-  "scripts": {
-    "start": "lessc -x less/bootstrap.less css/bootstrap.css"
-  },
-  "devDependencies": {
-    "eslint": "^3.17.1",
-    "eslint-plugin-react": "^6.10.0"
-  }
+    "name": "dpizza",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/dpizza/dpizza.github.io.git",
+    "author": "Maria Marcano <mariangemarcano@gmail.com>",
+    "dependencies": {
+        "babel": "^6.23.0",
+        "babel-core": "^6.24.0",
+        "babel-loader": "^6.4.1",
+        "babel-preset-es2015": "^6.24.0",
+        "babel-preset-react": "^6.23.0",
+        "less": "^2.7.2",
+        "react": "^15.4.2",
+        "react-dom": "^15.4.2",
+        "webpack": "^2.2.1"
+    },
+    "scripts": {
+        "build": "lessc -x less/bootstrap.less css/bootstrap.css",
+        "start": "webpack --watch --config config/webpack.config.js"
+    },
+    "devDependencies": {
+        "eslint": "^3.17.1",
+        "eslint-plugin-react": "^6.10.0"
+    }
 }

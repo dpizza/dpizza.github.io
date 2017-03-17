@@ -8,3 +8,4 @@ Web technologies used to build the site:
 * ESLint http://eslint.org/
 * react react-dom 
 * babel and webpack 
+* react-bootstrap components 

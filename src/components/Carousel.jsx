@@ -4,6 +4,7 @@ import Carousel from 'react-bootstrap/lib/Carousel';
 import Image from './Resources/Image';
 
 const MainCarousel = () => (
+  <div className="container">
     <Carousel>
       <Carousel.Item>
         <Image />
@@ -16,6 +17,7 @@ const MainCarousel = () => (
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
+  </div>
 );
 
 export default MainCarousel;

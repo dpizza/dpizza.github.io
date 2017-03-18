@@ -1,8 +1,9 @@
 # D'Pizza Restaurant development
 
-Web technologies used to build the site:
+Web technologies used to build this website:
 
 * VS Code IDE
+* html and css
 * bootstrap and custom styles are in dpizza.less.
 * Yarn. To get started setup yarn: https://yarnpkg.com/en/docs/install
 * ESLint http://eslint.org/

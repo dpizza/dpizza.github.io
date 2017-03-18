@@ -27538,10 +27538,23 @@ var _Menu = __webpack_require__(305);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
+var _Carousel = __webpack_require__(312);
+
+var _Carousel2 = _interopRequireDefault(_Carousel);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  return _react2.default.createElement(_Menu2.default, null);
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(_Menu2.default, null),
+    _react2.default.createElement(
+      'div',
+      { className: 'container' },
+      _react2.default.createElement(_Carousel2.default, null)
+    )
+  );
 };
 
 exports.default = App;
@@ -27636,6 +27649,978 @@ exports.default = Menu;
 
 module.exports = __webpack_require__(138);
 
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(14);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _classCallCheck2 = __webpack_require__(12);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(15);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(13);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _classnames = __webpack_require__(18);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _CarouselCaption = __webpack_require__(308);
+
+var _CarouselCaption2 = _interopRequireDefault(_CarouselCaption);
+
+var _CarouselItem = __webpack_require__(309);
+
+var _CarouselItem2 = _interopRequireDefault(_CarouselItem);
+
+var _Glyphicon = __webpack_require__(310);
+
+var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
+
+var _SafeAnchor = __webpack_require__(213);
+
+var _SafeAnchor2 = _interopRequireDefault(_SafeAnchor);
+
+var _bootstrapUtils = __webpack_require__(25);
+
+var _ValidComponentChildren = __webpack_require__(214);
+
+var _ValidComponentChildren2 = _interopRequireDefault(_ValidComponentChildren);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+// TODO: `slide` should be `animate`.
+
+// TODO: Use uncontrollable.
+
+var propTypes = {
+  slide: _react2['default'].PropTypes.bool,
+  indicators: _react2['default'].PropTypes.bool,
+  interval: _react2['default'].PropTypes.number,
+  controls: _react2['default'].PropTypes.bool,
+  pauseOnHover: _react2['default'].PropTypes.bool,
+  wrap: _react2['default'].PropTypes.bool,
+  /**
+   * Callback fired when the active item changes.
+   *
+   * ```js
+   * (eventKey: any) => any | (eventKey: any, event: Object) => any
+   * ```
+   *
+   * If this callback takes two or more arguments, the second argument will
+   * be a persisted event object with `direction` set to the direction of the
+   * transition.
+   */
+  onSelect: _react2['default'].PropTypes.func,
+  onSlideEnd: _react2['default'].PropTypes.func,
+  activeIndex: _react2['default'].PropTypes.number,
+  defaultActiveIndex: _react2['default'].PropTypes.number,
+  direction: _react2['default'].PropTypes.oneOf(['prev', 'next']),
+  prevIcon: _react2['default'].PropTypes.node,
+  /**
+   * Label shown to screen readers only, can be used to show the previous element
+   * in the carousel.
+   * Set to null to deactivate.
+   */
+  prevLabel: _react2['default'].PropTypes.string,
+  nextIcon: _react2['default'].PropTypes.node,
+  /**
+   * Label shown to screen readers only, can be used to show the next element
+   * in the carousel.
+   * Set to null to deactivate.
+   */
+  nextLabel: _react2['default'].PropTypes.string
+};
+
+var defaultProps = {
+  slide: true,
+  interval: 5000,
+  pauseOnHover: true,
+  wrap: true,
+  indicators: true,
+  controls: true,
+  prevIcon: _react2['default'].createElement(_Glyphicon2['default'], { glyph: 'chevron-left' }),
+  prevLabel: 'Previous',
+  nextIcon: _react2['default'].createElement(_Glyphicon2['default'], { glyph: 'chevron-right' }),
+  nextLabel: 'Next'
+};
+
+var Carousel = function (_React$Component) {
+  (0, _inherits3['default'])(Carousel, _React$Component);
+
+  function Carousel(props, context) {
+    (0, _classCallCheck3['default'])(this, Carousel);
+
+    var _this = (0, _possibleConstructorReturn3['default'])(this, _React$Component.call(this, props, context));
+
+    _this.handleMouseOver = _this.handleMouseOver.bind(_this);
+    _this.handleMouseOut = _this.handleMouseOut.bind(_this);
+    _this.handlePrev = _this.handlePrev.bind(_this);
+    _this.handleNext = _this.handleNext.bind(_this);
+    _this.handleItemAnimateOutEnd = _this.handleItemAnimateOutEnd.bind(_this);
+
+    var defaultActiveIndex = props.defaultActiveIndex;
+
+    _this.state = {
+      activeIndex: defaultActiveIndex != null ? defaultActiveIndex : 0,
+      previousActiveIndex: null,
+      direction: null
+    };
+
+    _this.isUnmounted = false;
+    return _this;
+  }
+
+  Carousel.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+    var activeIndex = this.getActiveIndex();
+
+    if (nextProps.activeIndex != null && nextProps.activeIndex !== activeIndex) {
+      clearTimeout(this.timeout);
+
+      this.setState({
+        previousActiveIndex: activeIndex,
+        direction: nextProps.direction != null ? nextProps.direction : this.getDirection(activeIndex, nextProps.activeIndex)
+      });
+    }
+  };
+
+  Carousel.prototype.componentDidMount = function componentDidMount() {
+    this.waitForNext();
+  };
+
+  Carousel.prototype.componentWillUnmount = function componentWillUnmount() {
+    clearTimeout(this.timeout);
+    this.isUnmounted = true;
+  };
+
+  Carousel.prototype.handleMouseOver = function handleMouseOver() {
+    if (this.props.pauseOnHover) {
+      this.pause();
+    }
+  };
+
+  Carousel.prototype.handleMouseOut = function handleMouseOut() {
+    if (this.isPaused) {
+      this.play();
+    }
+  };
+
+  Carousel.prototype.handlePrev = function handlePrev(e) {
+    var index = this.getActiveIndex() - 1;
+
+    if (index < 0) {
+      if (!this.props.wrap) {
+        return;
+      }
+      index = _ValidComponentChildren2['default'].count(this.props.children) - 1;
+    }
+
+    this.select(index, e, 'prev');
+  };
+
+  Carousel.prototype.handleNext = function handleNext(e) {
+    var index = this.getActiveIndex() + 1;
+    var count = _ValidComponentChildren2['default'].count(this.props.children);
+
+    if (index > count - 1) {
+      if (!this.props.wrap) {
+        return;
+      }
+      index = 0;
+    }
+
+    this.select(index, e, 'next');
+  };
+
+  Carousel.prototype.handleItemAnimateOutEnd = function handleItemAnimateOutEnd() {
+    var _this2 = this;
+
+    this.setState({
+      previousActiveIndex: null,
+      direction: null
+    }, function () {
+      _this2.waitForNext();
+
+      if (_this2.props.onSlideEnd) {
+        _this2.props.onSlideEnd();
+      }
+    });
+  };
+
+  Carousel.prototype.getActiveIndex = function getActiveIndex() {
+    var activeIndexProp = this.props.activeIndex;
+    return activeIndexProp != null ? activeIndexProp : this.state.activeIndex;
+  };
+
+  Carousel.prototype.getDirection = function getDirection(prevIndex, index) {
+    if (prevIndex === index) {
+      return null;
+    }
+
+    return prevIndex > index ? 'prev' : 'next';
+  };
+
+  Carousel.prototype.select = function select(index, e, direction) {
+    clearTimeout(this.timeout);
+
+    // TODO: Is this necessary? Seems like the only risk is if the component
+    // unmounts while handleItemAnimateOutEnd fires.
+    if (this.isUnmounted) {
+      return;
+    }
+
+    var previousActiveIndex = this.props.slide ? this.getActiveIndex() : null;
+    direction = direction || this.getDirection(previousActiveIndex, index);
+
+    var onSelect = this.props.onSelect;
+
+    if (onSelect) {
+      if (onSelect.length > 1) {
+        // React SyntheticEvents are pooled, so we need to remove this event
+        // from the pool to add a custom property. To avoid unnecessarily
+        // removing objects from the pool, only do this when the listener
+        // actually wants the event.
+        if (e) {
+          e.persist();
+          e.direction = direction;
+        } else {
+          e = { direction: direction };
+        }
+
+        onSelect(index, e);
+      } else {
+        onSelect(index);
+      }
+    }
+
+    if (this.props.activeIndex == null && index !== previousActiveIndex) {
+      if (this.state.previousActiveIndex != null) {
+        // If currently animating don't activate the new index.
+        // TODO: look into queueing this canceled call and
+        // animating after the current animation has ended.
+        return;
+      }
+
+      this.setState({
+        activeIndex: index,
+        previousActiveIndex: previousActiveIndex,
+        direction: direction
+      });
+    }
+  };
+
+  Carousel.prototype.waitForNext = function waitForNext() {
+    var _props = this.props,
+        slide = _props.slide,
+        interval = _props.interval,
+        activeIndexProp = _props.activeIndex;
+
+    if (!this.isPaused && slide && interval && activeIndexProp == null) {
+      this.timeout = setTimeout(this.handleNext, interval);
+    }
+  };
+
+  // This might be a public API.
+
+
+  Carousel.prototype.pause = function pause() {
+    this.isPaused = true;
+    clearTimeout(this.timeout);
+  };
+
+  // This might be a public API.
+
+
+  Carousel.prototype.play = function play() {
+    this.isPaused = false;
+    this.waitForNext();
+  };
+
+  Carousel.prototype.renderIndicators = function renderIndicators(children, activeIndex, bsProps) {
+    var _this3 = this;
+
+    var indicators = [];
+
+    _ValidComponentChildren2['default'].forEach(children, function (child, index) {
+      indicators.push(_react2['default'].createElement('li', {
+        key: index,
+        className: index === activeIndex ? 'active' : null,
+        onClick: function onClick(e) {
+          return _this3.select(index, e);
+        }
+      }),
+
+      // Force whitespace between indicator elements. Bootstrap requires
+      // this for correct spacing of elements.
+      ' ');
+    });
+
+    return _react2['default'].createElement('ol', { className: (0, _bootstrapUtils.prefix)(bsProps, 'indicators') }, indicators);
+  };
+
+  Carousel.prototype.renderControls = function renderControls(properties) {
+    var wrap = properties.wrap,
+        children = properties.children,
+        activeIndex = properties.activeIndex,
+        prevIcon = properties.prevIcon,
+        nextIcon = properties.nextIcon,
+        bsProps = properties.bsProps,
+        prevLabel = properties.prevLabel,
+        nextLabel = properties.nextLabel;
+
+    var controlClassName = (0, _bootstrapUtils.prefix)(bsProps, 'control');
+    var count = _ValidComponentChildren2['default'].count(children);
+
+    return [(wrap || activeIndex !== 0) && _react2['default'].createElement(_SafeAnchor2['default'], {
+      key: 'prev',
+      className: (0, _classnames2['default'])(controlClassName, 'left'),
+      onClick: this.handlePrev
+    }, prevIcon, prevLabel && _react2['default'].createElement('span', { className: 'sr-only' }, prevLabel)), (wrap || activeIndex !== count - 1) && _react2['default'].createElement(_SafeAnchor2['default'], {
+      key: 'next',
+      className: (0, _classnames2['default'])(controlClassName, 'right'),
+      onClick: this.handleNext
+    }, nextIcon, nextLabel && _react2['default'].createElement('span', { className: 'sr-only' }, nextLabel))];
+  };
+
+  Carousel.prototype.render = function render() {
+    var _this4 = this;
+
+    var _props2 = this.props,
+        slide = _props2.slide,
+        indicators = _props2.indicators,
+        controls = _props2.controls,
+        wrap = _props2.wrap,
+        prevIcon = _props2.prevIcon,
+        prevLabel = _props2.prevLabel,
+        nextIcon = _props2.nextIcon,
+        nextLabel = _props2.nextLabel,
+        className = _props2.className,
+        children = _props2.children,
+        props = (0, _objectWithoutProperties3['default'])(_props2, ['slide', 'indicators', 'controls', 'wrap', 'prevIcon', 'prevLabel', 'nextIcon', 'nextLabel', 'className', 'children']);
+    var _state = this.state,
+        previousActiveIndex = _state.previousActiveIndex,
+        direction = _state.direction;
+
+    var _splitBsPropsAndOmit = (0, _bootstrapUtils.splitBsPropsAndOmit)(props, ['interval', 'pauseOnHover', 'onSelect', 'onSlideEnd', 'activeIndex', // Accessed via this.getActiveIndex().
+    'defaultActiveIndex', 'direction']),
+        bsProps = _splitBsPropsAndOmit[0],
+        elementProps = _splitBsPropsAndOmit[1];
+
+    var activeIndex = this.getActiveIndex();
+
+    var classes = (0, _extends3['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), {
+      slide: slide
+    });
+
+    return _react2['default'].createElement('div', (0, _extends3['default'])({}, elementProps, {
+      className: (0, _classnames2['default'])(className, classes),
+      onMouseOver: this.handleMouseOver,
+      onMouseOut: this.handleMouseOut
+    }), indicators && this.renderIndicators(children, activeIndex, bsProps), _react2['default'].createElement('div', { className: (0, _bootstrapUtils.prefix)(bsProps, 'inner') }, _ValidComponentChildren2['default'].map(children, function (child, index) {
+      var active = index === activeIndex;
+      var previousActive = slide && index === previousActiveIndex;
+
+      return (0, _react.cloneElement)(child, {
+        active: active,
+        index: index,
+        animateOut: previousActive,
+        animateIn: active && previousActiveIndex != null && slide,
+        direction: direction,
+        onAnimateOutEnd: previousActive ? _this4.handleItemAnimateOutEnd : null
+      });
+    })), controls && this.renderControls({
+      wrap: wrap,
+      children: children,
+      activeIndex: activeIndex,
+      prevIcon: prevIcon,
+      prevLabel: prevLabel,
+      nextIcon: nextIcon,
+      nextLabel: nextLabel,
+      bsProps: bsProps
+    }));
+  };
+
+  return Carousel;
+}(_react2['default'].Component);
+
+Carousel.propTypes = propTypes;
+Carousel.defaultProps = defaultProps;
+
+Carousel.Caption = _CarouselCaption2['default'];
+Carousel.Item = _CarouselItem2['default'];
+
+exports['default'] = (0, _bootstrapUtils.bsClass)('carousel', Carousel);
+module.exports = exports['default'];
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(14);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _classCallCheck2 = __webpack_require__(12);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(15);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(13);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _classnames = __webpack_require__(18);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _elementType = __webpack_require__(87);
+
+var _elementType2 = _interopRequireDefault(_elementType);
+
+var _bootstrapUtils = __webpack_require__(25);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+var propTypes = {
+  componentClass: _elementType2['default']
+};
+
+var defaultProps = {
+  componentClass: 'div'
+};
+
+var CarouselCaption = function (_React$Component) {
+  (0, _inherits3['default'])(CarouselCaption, _React$Component);
+
+  function CarouselCaption() {
+    (0, _classCallCheck3['default'])(this, CarouselCaption);
+    return (0, _possibleConstructorReturn3['default'])(this, _React$Component.apply(this, arguments));
+  }
+
+  CarouselCaption.prototype.render = function render() {
+    var _props = this.props,
+        Component = _props.componentClass,
+        className = _props.className,
+        props = (0, _objectWithoutProperties3['default'])(_props, ['componentClass', 'className']);
+
+    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
+        bsProps = _splitBsProps[0],
+        elementProps = _splitBsProps[1];
+
+    var classes = (0, _bootstrapUtils.getClassSet)(bsProps);
+
+    return _react2['default'].createElement(Component, (0, _extends3['default'])({}, elementProps, {
+      className: (0, _classnames2['default'])(className, classes)
+    }));
+  };
+
+  return CarouselCaption;
+}(_react2['default'].Component);
+
+CarouselCaption.propTypes = propTypes;
+CarouselCaption.defaultProps = defaultProps;
+
+exports['default'] = (0, _bootstrapUtils.bsClass)('carousel-caption', CarouselCaption);
+module.exports = exports['default'];
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(14);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _classCallCheck2 = __webpack_require__(12);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(15);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(13);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _classnames = __webpack_require__(18);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(71);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _TransitionEvents = __webpack_require__(311);
+
+var _TransitionEvents2 = _interopRequireDefault(_TransitionEvents);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+// TODO: This should use a timeout instead of TransitionEvents, or else just
+// not wait until transition end to trigger continuing animations.
+
+var propTypes = {
+  direction: _react2['default'].PropTypes.oneOf(['prev', 'next']),
+  onAnimateOutEnd: _react2['default'].PropTypes.func,
+  active: _react2['default'].PropTypes.bool,
+  animateIn: _react2['default'].PropTypes.bool,
+  animateOut: _react2['default'].PropTypes.bool,
+  index: _react2['default'].PropTypes.number
+};
+
+var defaultProps = {
+  active: false,
+  animateIn: false,
+  animateOut: false
+};
+
+var CarouselItem = function (_React$Component) {
+  (0, _inherits3['default'])(CarouselItem, _React$Component);
+
+  function CarouselItem(props, context) {
+    (0, _classCallCheck3['default'])(this, CarouselItem);
+
+    var _this = (0, _possibleConstructorReturn3['default'])(this, _React$Component.call(this, props, context));
+
+    _this.handleAnimateOutEnd = _this.handleAnimateOutEnd.bind(_this);
+
+    _this.state = {
+      direction: null
+    };
+
+    _this.isUnmounted = false;
+    return _this;
+  }
+
+  CarouselItem.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+    if (this.props.active !== nextProps.active) {
+      this.setState({ direction: null });
+    }
+  };
+
+  CarouselItem.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var _this2 = this;
+
+    var active = this.props.active;
+
+    var prevActive = prevProps.active;
+
+    if (!active && prevActive) {
+      _TransitionEvents2['default'].addEndEventListener(_reactDom2['default'].findDOMNode(this), this.handleAnimateOutEnd);
+    }
+
+    if (active !== prevActive) {
+      setTimeout(function () {
+        return _this2.startAnimation();
+      }, 20);
+    }
+  };
+
+  CarouselItem.prototype.componentWillUnmount = function componentWillUnmount() {
+    this.isUnmounted = true;
+  };
+
+  CarouselItem.prototype.handleAnimateOutEnd = function handleAnimateOutEnd() {
+    if (this.isUnmounted) {
+      return;
+    }
+
+    if (this.props.onAnimateOutEnd) {
+      this.props.onAnimateOutEnd(this.props.index);
+    }
+  };
+
+  CarouselItem.prototype.startAnimation = function startAnimation() {
+    if (this.isUnmounted) {
+      return;
+    }
+
+    this.setState({
+      direction: this.props.direction === 'prev' ? 'right' : 'left'
+    });
+  };
+
+  CarouselItem.prototype.render = function render() {
+    var _props = this.props,
+        direction = _props.direction,
+        active = _props.active,
+        animateIn = _props.animateIn,
+        animateOut = _props.animateOut,
+        className = _props.className,
+        props = (0, _objectWithoutProperties3['default'])(_props, ['direction', 'active', 'animateIn', 'animateOut', 'className']);
+
+    delete props.onAnimateOutEnd;
+    delete props.index;
+
+    var classes = {
+      item: true,
+      active: active && !animateIn || animateOut
+    };
+    if (direction && active && animateIn) {
+      classes[direction] = true;
+    }
+    if (this.state.direction && (animateIn || animateOut)) {
+      classes[this.state.direction] = true;
+    }
+
+    return _react2['default'].createElement('div', (0, _extends3['default'])({}, props, {
+      className: (0, _classnames2['default'])(className, classes)
+    }));
+  };
+
+  return CarouselItem;
+}(_react2['default'].Component);
+
+CarouselItem.propTypes = propTypes;
+CarouselItem.defaultProps = defaultProps;
+
+exports['default'] = CarouselItem;
+module.exports = exports['default'];
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends3 = __webpack_require__(10);
+
+var _extends4 = _interopRequireDefault(_extends3);
+
+var _objectWithoutProperties2 = __webpack_require__(14);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _classCallCheck2 = __webpack_require__(12);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _possibleConstructorReturn2 = __webpack_require__(15);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(13);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _classnames = __webpack_require__(18);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _bootstrapUtils = __webpack_require__(25);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+var propTypes = {
+  /**
+   * An icon name without "glyphicon-" prefix. See e.g. http://getbootstrap.com/components/#glyphicons
+   */
+  glyph: _react2['default'].PropTypes.string.isRequired
+};
+
+var Glyphicon = function (_React$Component) {
+  (0, _inherits3['default'])(Glyphicon, _React$Component);
+
+  function Glyphicon() {
+    (0, _classCallCheck3['default'])(this, Glyphicon);
+    return (0, _possibleConstructorReturn3['default'])(this, _React$Component.apply(this, arguments));
+  }
+
+  Glyphicon.prototype.render = function render() {
+    var _extends2;
+
+    var _props = this.props,
+        glyph = _props.glyph,
+        className = _props.className,
+        props = (0, _objectWithoutProperties3['default'])(_props, ['glyph', 'className']);
+
+    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
+        bsProps = _splitBsProps[0],
+        elementProps = _splitBsProps[1];
+
+    var classes = (0, _extends4['default'])({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps, glyph)] = true, _extends2));
+
+    return _react2['default'].createElement('span', (0, _extends4['default'])({}, elementProps, {
+      className: (0, _classnames2['default'])(className, classes)
+    }));
+  };
+
+  return Glyphicon;
+}(_react2['default'].Component);
+
+Glyphicon.propTypes = propTypes;
+
+exports['default'] = (0, _bootstrapUtils.bsClass)('glyphicon', Glyphicon);
+module.exports = exports['default'];
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+/**
+ * Copyright 2013-2014, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This file contains a modified version of:
+ * https://github.com/facebook/react/blob/v0.12.0/src/addons/transitions/ReactTransitionEvents.js
+ *
+ * This source code is licensed under the BSD-style license found here:
+ * https://github.com/facebook/react/blob/v0.12.0/LICENSE
+ * An additional grant of patent rights can be found here:
+ * https://github.com/facebook/react/blob/v0.12.0/PATENTS
+ */
+
+var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/**
+ * EVENT_NAME_MAP is used to determine which event fired when a
+ * transition/animation ends, based on the style property used to
+ * define that event.
+ */
+var EVENT_NAME_MAP = {
+  transitionend: {
+    'transition': 'transitionend',
+    'WebkitTransition': 'webkitTransitionEnd',
+    'MozTransition': 'mozTransitionEnd',
+    'OTransition': 'oTransitionEnd',
+    'msTransition': 'MSTransitionEnd'
+  },
+
+  animationend: {
+    'animation': 'animationend',
+    'WebkitAnimation': 'webkitAnimationEnd',
+    'MozAnimation': 'mozAnimationEnd',
+    'OAnimation': 'oAnimationEnd',
+    'msAnimation': 'MSAnimationEnd'
+  }
+};
+
+var endEvents = [];
+
+function detectEvents() {
+  var testEl = document.createElement('div');
+  var style = testEl.style;
+
+  // On some platforms, in particular some releases of Android 4.x,
+  // the un-prefixed "animation" and "transition" properties are defined on the
+  // style object but the events that fire will still be prefixed, so we need
+  // to check if the un-prefixed events are useable, and if not remove them
+  // from the map
+  if (!('AnimationEvent' in window)) {
+    delete EVENT_NAME_MAP.animationend.animation;
+  }
+
+  if (!('TransitionEvent' in window)) {
+    delete EVENT_NAME_MAP.transitionend.transition;
+  }
+
+  for (var baseEventName in EVENT_NAME_MAP) {
+    // eslint-disable-line guard-for-in
+    var baseEvents = EVENT_NAME_MAP[baseEventName];
+    for (var styleName in baseEvents) {
+      if (styleName in style) {
+        endEvents.push(baseEvents[styleName]);
+        break;
+      }
+    }
+  }
+}
+
+if (canUseDOM) {
+  detectEvents();
+}
+
+// We use the raw {add|remove}EventListener() call because EventListener
+// does not know how to remove event listeners and we really should
+// clean up. Also, these events are not triggered in older browsers
+// so we should be A-OK here.
+
+function addEventListener(node, eventName, eventListener) {
+  node.addEventListener(eventName, eventListener, false);
+}
+
+function removeEventListener(node, eventName, eventListener) {
+  node.removeEventListener(eventName, eventListener, false);
+}
+
+var ReactTransitionEvents = {
+  addEndEventListener: function addEndEventListener(node, eventListener) {
+    if (endEvents.length === 0) {
+      // If CSS transitions are not supported, trigger an "end animation"
+      // event immediately.
+      window.setTimeout(eventListener, 0);
+      return;
+    }
+    endEvents.forEach(function (endEvent) {
+      addEventListener(node, endEvent, eventListener);
+    });
+  },
+  removeEndEventListener: function removeEndEventListener(node, eventListener) {
+    if (endEvents.length === 0) {
+      return;
+    }
+    endEvents.forEach(function (endEvent) {
+      removeEventListener(node, endEvent, eventListener);
+    });
+  }
+};
+
+exports['default'] = ReactTransitionEvents;
+module.exports = exports['default'];
+
+/***/ }),
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Carousel = __webpack_require__(307);
+
+var _Carousel2 = _interopRequireDefault(_Carousel);
+
+var _Image = __webpack_require__(313);
+
+var _Image2 = _interopRequireDefault(_Image);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MainCarousel = function MainCarousel() {
+  return _react2.default.createElement(
+    _Carousel2.default,
+    null,
+    _react2.default.createElement(
+      _Carousel2.default.Item,
+      null,
+      _react2.default.createElement(_Image2.default, null),
+      _react2.default.createElement(
+        _Carousel2.default.Caption,
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Bienvenido a D\'Pizza'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Tenemos los ingredientes especiales que hacen una buena pizza!!'
+        ),
+        _react2.default.createElement(
+          'h4',
+          null,
+          'Sitio en construcci\xF3n'
+        )
+      )
+    )
+  );
+};
+
+exports.default = MainCarousel;
+
+/***/ }),
+/* 313 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Image = function Image() {
+  return _react2.default.createElement("img", {
+    src: "img/pizza.jpeg"
+  });
+};
+
+exports.default = Image;
 
 /***/ })
 /******/ ]);

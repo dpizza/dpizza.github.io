@@ -9,9 +9,9 @@ const PageFooter = () => (
         <span className="glyphicon glyphicon-chevron-up" />
       </a><br /><br />
       <Panel>
-        <p class="small">
+        <p className="small">
           <span>
-            <i class="glyphicon glyphicon-map-marker" />
+            <i className="glyphicon glyphicon-map-marker" />
             {' '}
             Av. Fernández Peña, centro comercial trapiche local 04. Ejido, estado Mérida
           </span>
@@ -20,7 +20,7 @@ const PageFooter = () => (
           <span>☎ <a href="tel:+58 (274) 2458471">+58 (274) 2458471</a></span>
           <br />
           <span>
-            <i class="glyphicon glyphicon-envelope" />
+            <i className="glyphicon glyphicon-envelope" />
             {' '}
             <a href="mailto:dpizza.merida@gmail.com">dpizza.merida@gmail.com</a>
           </span>

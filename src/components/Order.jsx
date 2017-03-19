@@ -7,7 +7,7 @@ const Order = ({showModal, closeModal}) => {
     <div>
       <Modal show={showModal} onHide={closeModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Ordena</Modal.Title>
+          <Modal.Title><strong>Ordena</strong></Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>

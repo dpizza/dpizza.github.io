@@ -6,6 +6,7 @@ import Carousel from './Carousel';
 import Footer from './Footer';
 import Order from './Order';
 import Schedule from './Schedule';
+import Pizzas from './Pizzas';
 
 const ORDER = 'ORDER';
 const SCHEDULE = 'SCHEDULE';
@@ -58,6 +59,7 @@ class App extends React.Component {
           showModal={this.state.showSchedule}
           closeModal={this.close.bind(this, SCHEDULE)}
         />
+        <Pizzas />
         <Footer />
       </div>
     );

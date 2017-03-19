@@ -1,7 +1,6 @@
 import React from 'react';
-import Enum from 'es6-enum';
 
-import Menu from './Menu';
+import WebsiteMenu from './WebsiteMenu';
 import Carousel from './Carousel';
 import Footer from './Footer';
 import Order from './Order';
@@ -49,7 +48,7 @@ class App extends React.Component {
     };
     return (
       <div>
-        <Menu openModalWindowsFunc={openModalWindowsFunc} />
+        <WebsiteMenu openModalWindowsFunc={openModalWindowsFunc} />
         <Carousel />
         <Order
           showModal={this.state.showOrder}

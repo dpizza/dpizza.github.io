@@ -11,20 +11,16 @@ const Schedule = ({showModal, closeModal}) => {
         </Modal.Header>
         <Modal.Body>
           <p>
-            <p>
-              <strong>Lunes a Domingo</strong>
-              <br />Pizzas (5pm - 10pm)
-            </p>
-            <p>
-              <strong>Lunes a Viernes</strong>
-              <br />
-              Desayunos (7:30am - 10am){' '}
-              <br />
-              Almuerzos (12am - 2:30pm)
-              <br />
-              Panadería (3pm - 6pm)
-            </p>
+            <strong>Lunes a Domingo</strong>
+            <br />Pizzas (5pm - 10pm)
           </p>
+          <strong>Lunes a Viernes</strong>
+          <br />
+          Desayunos (7:30am - 10am){' '}
+          <br />
+          Almuerzos (12am - 2:30pm)
+          <br />
+          Panadería (3pm - 6pm)
         </Modal.Body>
       </Modal>
     </div>

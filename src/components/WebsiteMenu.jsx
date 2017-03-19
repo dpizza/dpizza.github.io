@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 
-const Menu = ({openModalWindowsFunc}) => (
+const WebsiteMenu = ({openModalWindowsFunc}) => (
   <Navbar inverse collapseOnSelect fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
@@ -25,4 +25,4 @@ const Menu = ({openModalWindowsFunc}) => (
   </Navbar>
 );
 
-export default Menu;
+export default WebsiteMenu;

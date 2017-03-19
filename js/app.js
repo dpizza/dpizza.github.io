@@ -32192,17 +32192,17 @@ var pizzasMenu = [{
   },
   name: 'Napolitana',
   description: 'Queso, salsa y anchoa',
-  offer: [{
-    size: 'Normal',
+  offers: [{
+    name: 'Normal',
     price: 'Bs. 4.500,00'
   }, {
-    size: 'Mediana',
+    name: 'Mediana',
     price: 'Bs. 5.920,00'
   }, {
-    size: 'Familiar',
+    name: 'Familiar',
     price: 'Bs. 8.290,00'
   }, {
-    size: 'Extra Familiar',
+    name: 'Extra Familiar',
     price: 'Bs. 10.090,00'
   }]
 }];
@@ -32257,6 +32257,77 @@ var _Button2 = _interopRequireDefault(_Button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var getOffers = function getOffers(offers) {
+  var OffersHtmlValue = [];
+  var offer = {},
+      offer2 = offer;
+  var index = 0;
+
+  while (offers && offers.length > 0) {
+    offer = offers.shift();
+    offer2 = offers.shift();
+
+    if (OffersHtmlValue.length > 0) {
+      OffersHtmlValue.push(_react2.default.createElement('hr', { key: index++ }));
+    }
+
+    OffersHtmlValue.push(_react2.default.createElement(
+      _Row2.default,
+      { key: index++ },
+      _react2.default.createElement(
+        _Col2.default,
+        { md: 5 },
+        _react2.default.createElement(
+          _Button2.default,
+          { bsStyle: 'warning', bsSize: 'xsmall' },
+          '+'
+        ),
+        _react2.default.createElement(
+          'span',
+          null,
+          ' ',
+          offer.name,
+          ' ',
+          _react2.default.createElement(
+            'small',
+            null,
+            '(',
+            offer.price,
+            ')'
+          )
+        )
+      ),
+      offer2 ? _react2.default.createElement(
+        _Col2.default,
+        { md: 7 },
+        _react2.default.createElement(
+          _Button2.default,
+          { bsStyle: 'warning', bsSize: 'xsmall' },
+          '+'
+        ),
+        _react2.default.createElement(
+          'span',
+          null,
+          ' ',
+          offer2.name,
+          ' ',
+          _react2.default.createElement(
+            'small',
+            null,
+            '(',
+            offer2.price,
+            ')'
+          )
+        )
+      ) : ''
+    ));
+  }
+
+  return OffersHtmlValue;
+};
+
 var ProductList = function ProductList(_ref) {
   var products = _ref.products;
 
@@ -32299,91 +32370,7 @@ var ProductList = function ProductList(_ref) {
               _react2.default.createElement(
                 _Col2.default,
                 { id: 'menu-items', md: 9 },
-                _react2.default.createElement(
-                  _Row2.default,
-                  null,
-                  _react2.default.createElement(
-                    _Col2.default,
-                    { md: 5 },
-                    _react2.default.createElement(
-                      _Button2.default,
-                      { bsStyle: 'warning', bsSize: 'xsmall' },
-                      '+'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      ' Normal ',
-                      _react2.default.createElement(
-                        'small',
-                        null,
-                        '(Bs.4.500,00)'
-                      )
-                    )
-                  ),
-                  _react2.default.createElement(
-                    _Col2.default,
-                    { md: 7 },
-                    _react2.default.createElement(
-                      _Button2.default,
-                      { bsStyle: 'warning', bsSize: 'xsmall' },
-                      '+'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      ' Mediana',
-                      _react2.default.createElement(
-                        'small',
-                        null,
-                        '(Bs.5.920,00)'
-                      )
-                    )
-                  )
-                ),
-                _react2.default.createElement('hr', null),
-                _react2.default.createElement(
-                  _Row2.default,
-                  null,
-                  _react2.default.createElement(
-                    _Col2.default,
-                    { md: 5 },
-                    _react2.default.createElement(
-                      _Button2.default,
-                      { bsStyle: 'warning', bsSize: 'xsmall' },
-                      '+'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      ' Familiar',
-                      _react2.default.createElement(
-                        'small',
-                        null,
-                        '(Bs.8.290,00)'
-                      )
-                    )
-                  ),
-                  _react2.default.createElement(
-                    _Col2.default,
-                    { md: 5 },
-                    _react2.default.createElement(
-                      _Button2.default,
-                      { bsStyle: 'warning', bsSize: 'xsmall' },
-                      '+'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      null,
-                      'ExtraFamiliar',
-                      _react2.default.createElement(
-                        'small',
-                        null,
-                        '(Bs.10.090,00)'
-                      )
-                    )
-                  )
-                )
+                getOffers([].concat(_toConsumableArray(product.offers)))
               )
             )
           )

@@ -12,21 +12,21 @@ const pizzasMenu = [
     },
     name: 'Napolitana',
     description: 'Queso, salsa y anchoa',
-    offer: [
+    offers: [
       {
-        size: 'Normal',
+        name: 'Normal',
         price: 'Bs. 4.500,00'
       },
       {
-        size: 'Mediana',
+        name: 'Mediana',
         price: 'Bs. 5.920,00'
       },
       {
-        size: 'Familiar',
+        name: 'Familiar',
         price: 'Bs. 8.290,00'
       },
       {
-        size: 'Extra Familiar',
+        name: 'Extra Familiar',
         price: 'Bs. 10.090,00'
       }
     ]

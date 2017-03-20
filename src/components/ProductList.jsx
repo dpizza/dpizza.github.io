@@ -3,6 +3,7 @@ import React from 'react';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Button from 'react-bootstrap/lib/Button';
+import Grid from 'react-bootstrap/lib/Grid';
 
 const getOffers = offers => {
   let OffersHtmlValue = [];
@@ -42,11 +43,10 @@ const getOffers = offers => {
 
 const ProductList = ({products}) => {
   return (
-    <div>
-      {products.map(product => {
+    <Grid bsClass='grid-layout'>
+      {products.map((product, index) => {
         return (
-          <div key={product.id}>
-            <hr />
+          <div key={index}>
             <Row>
               <Col md={2}>
                 <a href="#" />
@@ -67,7 +67,7 @@ const ProductList = ({products}) => {
           </div>
         );
       })}
-    </div>
+    </Grid>
   );
 };
 

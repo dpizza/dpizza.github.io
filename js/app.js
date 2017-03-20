@@ -32237,6 +32237,10 @@ var _Button = __webpack_require__(231);
 
 var _Button2 = _interopRequireDefault(_Button);
 
+var _Grid = __webpack_require__(238);
+
+var _Grid2 = _interopRequireDefault(_Grid);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -32314,13 +32318,12 @@ var ProductList = function ProductList(_ref) {
   var products = _ref.products;
 
   return _react2.default.createElement(
-    'div',
-    null,
-    products.map(function (product) {
+    _Grid2.default,
+    { bsClass: 'grid-layout' },
+    products.map(function (product, index) {
       return _react2.default.createElement(
         'div',
-        { key: product.id },
-        _react2.default.createElement('hr', null),
+        { key: index },
         _react2.default.createElement(
           _Row2.default,
           null,
@@ -32567,7 +32570,6 @@ exports.default = WebsiteMenu;
 
 module.exports = [
 	{
-		"id": 1,
 		"image": {
 			"src": "http://placehold.it/1200x600"
 		},
@@ -32589,6 +32591,31 @@ module.exports = [
 			{
 				"name": "Extra Familiar",
 				"price": "Bs. 10.090,00"
+			}
+		]
+	},
+	{
+		"image": {
+			"src": "http://placehold.it/1200x600"
+		},
+		"name": "Margarita",
+		"description": "Queso y salsa",
+		"offers": [
+			{
+				"name": "Normal",
+				"price": "Bs. 4.100,00"
+			},
+			{
+				"name": "Mediana",
+				"price": "Bs. 5.720,00"
+			},
+			{
+				"name": "Familiar",
+				"price": "Bs. 8.590,00"
+			},
+			{
+				"name": "Extra Familiar",
+				"price": "Bs. 9.890,00"
 			}
 		]
 	}

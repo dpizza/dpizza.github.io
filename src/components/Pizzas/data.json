@@ -1,25 +1,49 @@
 [{
-    "id": 1,
-    "image": {
-        "src": "http://placehold.it/1200x600"
+        "image": {
+            "src": "http://placehold.it/1200x600"
+        },
+        "name": "Napolitana",
+        "description": "Queso, salsa y anchoa",
+        "offers": [{
+                "name": "Normal",
+                "price": "Bs. 4.500,00"
+            },
+            {
+                "name": "Mediana",
+                "price": "Bs. 5.920,00"
+            },
+            {
+                "name": "Familiar",
+                "price": "Bs. 8.290,00"
+            },
+            {
+                "name": "Extra Familiar",
+                "price": "Bs. 10.090,00"
+            }
+        ]
     },
-    "name": "Napolitana",
-    "description": "Queso, salsa y anchoa",
-    "offers": [{
-            "name": "Normal",
-            "price": "Bs. 4.500,00"
+    {
+        "image": {
+            "src": "http://placehold.it/1200x600"
         },
-        {
-            "name": "Mediana",
-            "price": "Bs. 5.920,00"
-        },
-        {
-            "name": "Familiar",
-            "price": "Bs. 8.290,00"
-        },
-        {
-            "name": "Extra Familiar",
-            "price": "Bs. 10.090,00"
-        }
-    ]
-}]
+        "name": "Margarita",
+        "description": "Queso y salsa",
+        "offers": [{
+                "name": "Normal",
+                "price": "Bs. 4.100,00"
+            },
+            {
+                "name": "Mediana",
+                "price": "Bs. 5.720,00"
+            },
+            {
+                "name": "Familiar",
+                "price": "Bs. 8.590,00"
+            },
+            {
+                "name": "Extra Familiar",
+                "price": "Bs. 9.890,00"
+            }
+        ]
+    }
+]

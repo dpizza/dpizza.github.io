@@ -13,7 +13,7 @@ const WebsiteMenu = ({openModalWindowsFunc}) => (
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-      <Nav>
+      <Nav activeKey={2}>
         <NavItem eventKey={1} href="#menu">Menu</NavItem>
         <NavItem eventKey={2} href="#pizzas" className="active">Pizzas</NavItem>
       </Nav>

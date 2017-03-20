@@ -1,0 +1,25 @@
+[{
+    "id": 1,
+    "image": {
+        "src": "http://placehold.it/1200x600"
+    },
+    "name": "Napolitana",
+    "description": "Queso, salsa y anchoa",
+    "offers": [{
+            "name": "Normal",
+            "price": "Bs. 4.500,00"
+        },
+        {
+            "name": "Mediana",
+            "price": "Bs. 5.920,00"
+        },
+        {
+            "name": "Familiar",
+            "price": "Bs. 8.290,00"
+        },
+        {
+            "name": "Extra Familiar",
+            "price": "Bs. 10.090,00"
+        }
+    ]
+}]

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 358);
+/******/ 	return __webpack_require__(__webpack_require__.s = 359);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -32183,29 +32183,11 @@ var _ProductList = __webpack_require__(354);
 
 var _ProductList2 = _interopRequireDefault(_ProductList);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _data = __webpack_require__(358);
 
-var pizzasMenu = [{
-  id: 1,
-  image: {
-    src: 'http://placehold.it/1200x600'
-  },
-  name: 'Napolitana',
-  description: 'Queso, salsa y anchoa',
-  offers: [{
-    name: 'Normal',
-    price: 'Bs. 4.500,00'
-  }, {
-    name: 'Mediana',
-    price: 'Bs. 5.920,00'
-  }, {
-    name: 'Familiar',
-    price: 'Bs. 8.290,00'
-  }, {
-    name: 'Extra Familiar',
-    price: 'Bs. 10.090,00'
-  }]
-}];
+var _data2 = _interopRequireDefault(_data);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Pizzas = function Pizzas() {
   return _react2.default.createElement(
@@ -32222,7 +32204,7 @@ var Pizzas = function Pizzas() {
         _react2.default.createElement('br', null)
       )
     ),
-    _react2.default.createElement(_ProductList2.default, { products: pizzasMenu })
+    _react2.default.createElement(_ProductList2.default, { products: _data2.default })
   );
 };
 
@@ -32547,7 +32529,7 @@ var WebsiteMenu = function WebsiteMenu(_ref) {
       null,
       _react2.default.createElement(
         _Nav2.default,
-        null,
+        { activeKey: 2 },
         _react2.default.createElement(
           _NavItem2.default,
           { eventKey: 1, href: '#menu' },
@@ -32581,6 +32563,39 @@ exports.default = WebsiteMenu;
 
 /***/ }),
 /* 358 */
+/***/ (function(module, exports) {
+
+module.exports = [
+	{
+		"id": 1,
+		"image": {
+			"src": "http://placehold.it/1200x600"
+		},
+		"name": "Napolitana",
+		"description": "Queso, salsa y anchoa",
+		"offers": [
+			{
+				"name": "Normal",
+				"price": "Bs. 4.500,00"
+			},
+			{
+				"name": "Mediana",
+				"price": "Bs. 5.920,00"
+			},
+			{
+				"name": "Familiar",
+				"price": "Bs. 8.290,00"
+			},
+			{
+				"name": "Extra Familiar",
+				"price": "Bs. 10.090,00"
+			}
+		]
+	}
+];
+
+/***/ }),
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(158);

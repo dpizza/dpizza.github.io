@@ -32051,7 +32051,7 @@ var PageFooter = function PageFooter() {
       _react2.default.createElement('br', null),
       _react2.default.createElement(
         _Panel2.default,
-        null,
+        { className: 'footer-layout' },
         _react2.default.createElement(
           'p',
           { className: 'small' },

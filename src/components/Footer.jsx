@@ -8,7 +8,7 @@ const PageFooter = () => (
       <a className="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
         <span className="glyphicon glyphicon-chevron-up" />
       </a><br /><br />
-      <Panel>
+      <Panel className="footer-layout">
         <p className="small">
           <span>
             <i className="glyphicon glyphicon-map-marker" />

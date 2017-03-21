@@ -9,7 +9,7 @@ const MainCarousel = () => (
       <Carousel.Item>
         <Image />
         <Carousel.Caption>
-          <h1>Bienvenido a D'Pizza</h1>
+          <h1>Bienvenidos a D'Pizza</h1>
           <h3>
             Tenemos los ingredientes especiales que hacen una buena pizza!!
           </h3>

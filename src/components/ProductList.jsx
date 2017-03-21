@@ -21,17 +21,17 @@ const getOffers = offers => {
     OffersHtmlValue.push(
       <Row key={index++}>
         <Col md={5}>
-          <Button bsStyle="warning" bsSize="xsmall">
+          <Button bsStyle='warning' bsSize='xsmall'>
             +
           </Button>
-          <span> {offer.name} <small>({offer.price})</small></span>
+          <span> {offer.price} {offer.name ? <small>{offer.name}</small> : ''} </span>
         </Col>
         {offer2
           ? <Col md={7}>
-              <Button bsStyle="warning" bsSize="xsmall">
+              <Button bsStyle='warning' bsSize='xsmall'>
                 +
               </Button>
-              <span> {offer2.name} <small>({offer2.price})</small></span>
+              <span> {offer2.price} <small>{offer2.name}</small></span>
             </Col>
           : ''}
       </Row>
@@ -49,15 +49,15 @@ const ProductList = ({products}) => {
           <div key={index}>
             <Row>
               <Col md={2}>
-                <a href="#" />
+                <a href='#' />
               </Col>
               <Col md={10}>
                 <Row>
-                  <Col md={3}>
+                  <Col md={5}>
                     <h4>{product.name}</h4>
-                    <h5>{product.description}</h5>
+                    <span className='product-desc'>{product.description}</span>
                   </Col>
-                  <Col id="menu-items" md={9}>
+                  <Col id='menu-items' md={7}>
                     {getOffers([...product.offers])}
                   </Col>
                 </Row>

@@ -21,9 +21,10 @@ const getOffers = offers => {
     OffersHtmlValue.push(
       <Row key={index++}>
         <Col md={5}>
+        {/* Disable while online order is implemented
           <Button bsStyle="warning" bsSize="xsmall">
             +
-          </Button>
+          </Button> */}
           <span>
             {' '}
             {offer.price}
@@ -34,7 +35,9 @@ const getOffers = offers => {
         </Col>
         {offer2
           ? <Col md={7}>
-              <Button bsStyle="warning" bsSize="xsmall">+</Button>
+              {/* Disable while online orders is implemented
+              <Button bsStyle="warning" bsSize="xsmall">+</Button> 
+              */}
               <span> {offer2.price} <small>{offer2.name}</small></span>
             </Col>
           : ''}

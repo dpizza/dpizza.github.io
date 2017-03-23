@@ -32276,11 +32276,6 @@ var getOffers = function getOffers(offers) {
         _Col2.default,
         { md: 5 },
         _react2.default.createElement(
-          _Button2.default,
-          { bsStyle: 'warning', bsSize: 'xsmall' },
-          '+'
-        ),
-        _react2.default.createElement(
           'span',
           null,
           ' ',
@@ -32297,11 +32292,6 @@ var getOffers = function getOffers(offers) {
       offer2 ? _react2.default.createElement(
         _Col2.default,
         { md: 7 },
-        _react2.default.createElement(
-          _Button2.default,
-          { bsStyle: 'warning', bsSize: 'xsmall' },
-          '+'
-        ),
         _react2.default.createElement(
           'span',
           null,

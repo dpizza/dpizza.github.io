@@ -17,53 +17,64 @@ const getOffers = offers => {
     if (OffersHtmlValue.length > 0) {
       OffersHtmlValue.push(<hr key={index++} />);
     }
-  
+
     OffersHtmlValue.push(
       <Row key={index++}>
         <Col md={5}>
-          <Button bsStyle='warning' bsSize='xsmall'>
+          <Button bsStyle="warning" bsSize="xsmall">
             +
           </Button>
-          <span> {offer.price} {offer.name ? <small>{offer.name}</small> : ''} </span>
+          <span>
+            {' '}
+            {offer.price}
+            {' '}
+            {offer.name ? <small>{offer.name}</small> : ''}
+            {' '}
+          </span>
         </Col>
         {offer2
           ? <Col md={7}>
-              <Button bsStyle='warning' bsSize='xsmall'>
+              <Button bsStyle="warning" bsSize="xsmall">
                 +
               </Button>
               <span> {offer2.price} <small>{offer2.name}</small></span>
             </Col>
           : ''}
-      </Row>
+      </Row>,
     );
   }
 
   return OffersHtmlValue;
 };
 
-const ProductList = ({products}) => {
+const ProductList = ({products, containsImages}) => {
+  let config = containsImages ? {col1: 2, col2: 10} : {col1: 1, col2: 11};
   return (
-    <Grid bsClass='grid-layout'>
+    <Grid bsClass="grid-layout">
       {products.map((product, index) => {
         return (
           <div key={index}>
             <Row>
-              <Col md={2}>
-                <a href='#' />
+              <Col md={config.col1}>
+                <a href="#" />
               </Col>
-              <Col md={10}>
+              <Col md={config.col2}>
                 <Row>
                   <Col md={5}>
                     <h4>{product.name}</h4>
-                    <span className='product-desc'>{product.description}</span>
+                    {product.description
+                      ? <span className="product-desc">
+                          {product.description}
+                        </span>
+                      : ''}
                   </Col>
-                  <Col id='menu-items' md={7}>
+                  <Col id="menu-items" md={7}>
                     {getOffers([...product.offers])}
                   </Col>
                 </Row>
               </Col>
             </Row>
-            <hr />
+            {index < products.length - 1 ? <hr /> : <br />}
           </div>
         );
       })}
@@ -73,6 +84,7 @@ const ProductList = ({products}) => {
 
 ProductList.propTypes = {
   products: React.PropTypes.array.isRequired,
+  containsImages: React.PropTypes.bool,
 };
 
 export default ProductList;

@@ -13,7 +13,11 @@ const Pizzas = () => {
           Pizzas <br />
         </div>
       </PageHeader>
-      <ProductList products={data} />
+      <ProductList products={data.pizzas} />
+      <PageHeader>
+        <div className="menu-header">Haga su Pizza</div>
+        </PageHeader>
+        <ProductList products={data.extras}  />
     </div>
   );
 };

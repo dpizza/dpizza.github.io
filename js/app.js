@@ -32204,7 +32204,17 @@ var Pizzas = function Pizzas() {
         _react2.default.createElement('br', null)
       )
     ),
-    _react2.default.createElement(_ProductList2.default, { products: _data2.default })
+    _react2.default.createElement(_ProductList2.default, { products: _data2.default.pizzas }),
+    _react2.default.createElement(
+      _PageHeader2.default,
+      null,
+      _react2.default.createElement(
+        'div',
+        { className: 'menu-header' },
+        'Haga su Pizza'
+      )
+    ),
+    _react2.default.createElement(_ProductList2.default, { products: _data2.default.extras })
   );
 };
 
@@ -32312,8 +32322,10 @@ var getOffers = function getOffers(offers) {
 };
 
 var ProductList = function ProductList(_ref) {
-  var products = _ref.products;
+  var products = _ref.products,
+      containsImages = _ref.containsImages;
 
+  var config = containsImages ? { col1: 2, col2: 10 } : { col1: 1, col2: 11 };
   return _react2.default.createElement(
     _Grid2.default,
     { bsClass: 'grid-layout' },
@@ -32326,12 +32338,12 @@ var ProductList = function ProductList(_ref) {
           null,
           _react2.default.createElement(
             _Col2.default,
-            { md: 2 },
+            { md: config.col1 },
             _react2.default.createElement('a', { href: '#' })
           ),
           _react2.default.createElement(
             _Col2.default,
-            { md: 10 },
+            { md: config.col2 },
             _react2.default.createElement(
               _Row2.default,
               null,
@@ -32343,11 +32355,11 @@ var ProductList = function ProductList(_ref) {
                   null,
                   product.name
                 ),
-                _react2.default.createElement(
+                product.description ? _react2.default.createElement(
                   'span',
                   { className: 'product-desc' },
                   product.description
-                )
+                ) : ''
               ),
               _react2.default.createElement(
                 _Col2.default,
@@ -32357,14 +32369,15 @@ var ProductList = function ProductList(_ref) {
             )
           )
         ),
-        _react2.default.createElement('hr', null)
+        index < products.length - 1 ? _react2.default.createElement('hr', null) : _react2.default.createElement('br', null)
       );
     })
   );
 };
 
 ProductList.propTypes = {
-  products: _react2.default.PropTypes.array.isRequired
+  products: _react2.default.PropTypes.array.isRequired,
+  containsImages: _react2.default.PropTypes.bool
 };
 
 exports.default = ProductList;
@@ -32565,245 +32578,294 @@ exports.default = WebsiteMenu;
 /* 358 */
 /***/ (function(module, exports) {
 
-module.exports = [
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+module.exports = {
+	"pizzas": [
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
+			},
+			"name": "Napolitana",
+			"description": "Queso, salsa y anchoa",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 4.500,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 5.920,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 8.290,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 10.090,00"
+				}
+			]
 		},
-		"name": "Napolitana",
-		"description": "Queso, salsa y anchoa",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 4.500,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 5.920,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 8.290,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 10.090,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "Margarita",
+			"description": "Queso y salsa",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 4.100,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 5.720,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 8.590,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 9.890,00"
+				}
+			]
 		},
-		"name": "Margarita",
-		"description": "Queso y salsa",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 4.100,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 5.720,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 8.590,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 9.890,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "Primavera",
+			"description": "Queso, Jamon, tocineta y maiz",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 4.930,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 6.380,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 9.090,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 10.300,00"
+				}
+			]
 		},
-		"name": "Primavera",
-		"description": "Queso, Jamon, tocineta y maiz",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 4.930,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 6.380,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 9.090,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 10.300,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "La marron",
+			"description": "Queso, jamon, tocineta, anchoas, champiñon, maiz, cebolla, pimenton y tomate en trozos",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 5.740,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 6.890,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 9.800,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 11.800,00"
+				}
+			]
 		},
-		"name": "La marron",
-		"description": "Queso, jamon, tocineta, anchoas, champiñon, maiz, cebolla, pimenton y tomate en trozos",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 5.740,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 6.890,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 9.800,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 11.800,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "Vegetariana",
+			"description": "Queso, champiñon, alcachofa, aceitunas negras, cebollla, pimenton y maiz",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 5.140,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 6.390,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 9.140,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 10.800,00"
+				}
+			]
 		},
-		"name": "Vegetariana",
-		"description": "Queso, champiñon, alcachofa, aceitunas negras, cebollla, pimenton y maiz",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 5.140,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 6.390,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 9.140,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 10.800,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "Barbecue",
+			"description": "Queso, jamon. Anchoa, champiñon y salsa barbecue",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 4.840,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 6.090,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 9.040,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 10.600,00"
+				}
+			]
 		},
-		"name": "Barbecue",
-		"description": "Queso, jamon. Anchoa, champiñon y salsa barbecue",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 4.840,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 6.090,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 9.040,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 10.600,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "Hawaiana",
+			"description": "Queso, jamon, tocineta y piña",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 4.570,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 5.810,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 9.080,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 9.900,00"
+				}
+			]
 		},
-		"name": "Hawaiana",
-		"description": "Queso, jamon, tocineta y piña",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 4.570,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 5.810,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 9.080,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 9.900,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "Chorizo ahumado",
+			"description": "Queso, chorizo ahumado, champiñon y anchoas",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 5.250,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 6.580,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 9.380,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 9.900,00"
+				}
+			]
 		},
-		"name": "Chorizo ahumado",
-		"description": "Queso, chorizo ahumado, champiñon y anchoas",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 5.250,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 6.580,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 9.380,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 9.900,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "Salchichas",
+			"description": "Queso, salchichas, champiñon y anchoas",
+			"offers": [
+				{
+					"name": "Normal",
+					"price": "Bs. 5.250,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "Bs. 6.580,00"
+				},
+				{
+					"name": "Familiar",
+					"price": "Bs. 9.380,00"
+				},
+				{
+					"name": "Extra Familiar",
+					"price": "Bs. 9.900,00"
+				}
+			]
 		},
-		"name": "Salchichas",
-		"description": "Queso, salchichas, champiñon y anchoas",
-		"offers": [
-			{
-				"name": "Normal",
-				"price": "Bs. 5.250,00"
+		{
+			"image": {
+				"src": "http://placehold.it/1200x600"
 			},
-			{
-				"name": "Mediana",
-				"price": "Bs. 6.580,00"
-			},
-			{
-				"name": "Familiar",
-				"price": "Bs. 9.380,00"
-			},
-			{
-				"name": "Extra Familiar",
-				"price": "Bs. 9.900,00"
-			}
-		]
-	},
-	{
-		"image": {
-			"src": "http://placehold.it/1200x600"
+			"name": "Calzone",
+			"description": "Queso, jamon, anchoas y maiz",
+			"offers": [
+				{
+					"price": "Bs. 5.230,00"
+				}
+			]
+		}
+	],
+	"extras": [
+		{
+			"name": "Adicionales",
+			"description": "Tomate picado, cebolla y pimenton",
+			"offers": [
+				{
+					"name": "Norm y med",
+					"price": "Bs. 450,00"
+				},
+				{
+					"name": "Fam y Extra Fam",
+					"price": "Bs. 600,00"
+				}
+			]
 		},
-		"name": "Calzone",
-		"description": "Queso, jamon, anchoas y maiz",
-		"offers": [
-			{
-				"price": "Bs. 5.230,00"
-			}
-		]
-	}
-];
+		{
+			"name": "Adicionales",
+			"description": "Aceituna negras, salami, peperoni, alcachofa y otros",
+			"offers": [
+				{
+					"name": "Norm y med",
+					"price": "BS. 700,00 c/u"
+				},
+				{
+					"name": "Fam y Extra Fam",
+					"price": "BS. 800,00"
+				}
+			]
+		},
+		{
+			"name": "Caja para llevar",
+			"offers": [
+				{
+					"name": "Pequeño",
+					"price": "BS. 600,00"
+				},
+				{
+					"name": "Mediana",
+					"price": "BS. 800,00"
+				},
+				{
+					"name": "Grande",
+					"price": "BS. 1.000,00"
+				}
+			]
+		}
+	]
+};
 
 /***/ }),
 /* 359 */

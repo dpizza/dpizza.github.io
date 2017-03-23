@@ -34,9 +34,7 @@ const getOffers = offers => {
         </Col>
         {offer2
           ? <Col md={7}>
-              <Button bsStyle="warning" bsSize="xsmall">
-                +
-              </Button>
+              <Button bsStyle="warning" bsSize="xsmall">+</Button>
               <span> {offer2.price} <small>{offer2.name}</small></span>
             </Col>
           : ''}
@@ -48,16 +46,18 @@ const getOffers = offers => {
 };
 
 const ProductList = ({products, containsImages}) => {
-  let config = containsImages ? {col1: 2, col2: 10} : {col1: 1, col2: 11};
+  let config = containsImages ? {col1: 3, col2: 9} : {col1: 0, col2: 12};
   return (
     <Grid bsClass="grid-layout">
       {products.map((product, index) => {
         return (
           <div key={index}>
             <Row>
-              <Col md={config.col1}>
-                <a href="#" />
-              </Col>
+              { containsImages && product.image
+                ? <Col md={config.col1}>
+                    <img src={product.image.src} />
+                  </Col>
+                : null}
               <Col md={config.col2}>
                 <Row>
                   <Col md={5}>

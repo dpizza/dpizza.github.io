@@ -32325,7 +32325,7 @@ var ProductList = function ProductList(_ref) {
   var products = _ref.products,
       containsImages = _ref.containsImages;
 
-  var config = containsImages ? { col1: 2, col2: 10 } : { col1: 1, col2: 11 };
+  var config = containsImages ? { col1: 3, col2: 9 } : { col1: 0, col2: 12 };
   return _react2.default.createElement(
     _Grid2.default,
     { bsClass: 'grid-layout' },
@@ -32336,11 +32336,11 @@ var ProductList = function ProductList(_ref) {
         _react2.default.createElement(
           _Row2.default,
           null,
-          _react2.default.createElement(
+          containsImages && product.image ? _react2.default.createElement(
             _Col2.default,
             { md: config.col1 },
-            _react2.default.createElement('a', { href: '#' })
-          ),
+            _react2.default.createElement('img', { src: product.image.src })
+          ) : null,
           _react2.default.createElement(
             _Col2.default,
             { md: config.col2 },
@@ -32582,7 +32582,7 @@ module.exports = {
 	"pizzas": [
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Napolitana",
 			"description": "Queso, salsa y anchoa",
@@ -32607,7 +32607,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Margarita",
 			"description": "Queso y salsa",
@@ -32632,7 +32632,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Primavera",
 			"description": "Queso, Jamon, tocineta y maiz",
@@ -32657,7 +32657,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "La marron",
 			"description": "Queso, jamon, tocineta, anchoas, champiñon, maiz, cebolla, pimenton y tomate en trozos",
@@ -32682,7 +32682,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Vegetariana",
 			"description": "Queso, champiñon, alcachofa, aceitunas negras, cebollla, pimenton y maiz",
@@ -32707,7 +32707,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Barbecue",
 			"description": "Queso, jamon. Anchoa, champiñon y salsa barbecue",
@@ -32732,7 +32732,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Hawaiana",
 			"description": "Queso, jamon, tocineta y piña",
@@ -32757,7 +32757,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Chorizo ahumado",
 			"description": "Queso, chorizo ahumado, champiñon y anchoas",
@@ -32782,7 +32782,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Salchichas",
 			"description": "Queso, salchichas, champiñon y anchoas",
@@ -32807,7 +32807,7 @@ module.exports = {
 		},
 		{
 			"image": {
-				"src": "http://placehold.it/1200x600"
+				"src": "http://placehold.it/200x150"
 			},
 			"name": "Calzone",
 			"description": "Queso, jamon, anchoas y maiz",
@@ -32839,7 +32839,7 @@ module.exports = {
 			"offers": [
 				{
 					"name": "Norm y med",
-					"price": "BS. 700,00 c/u"
+					"price": "BS. 700,00"
 				},
 				{
 					"name": "Fam y Extra Fam",

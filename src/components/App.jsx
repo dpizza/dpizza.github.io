@@ -1,6 +1,5 @@
 import React from 'react';
 import HomePage from './HomePage';
-import MenuPage from './MenuPage';
 
 import {
   BrowserRouter as Router,
@@ -12,7 +11,7 @@ const App = () => (
    <Router>
      <div>
         <Route exact path="/" component={HomePage} />
-        <Route path="/menu" component={MenuPage} />
+        <Route exact path="/:selection" component={HomePage} />
       </div>
    </Router>
 );

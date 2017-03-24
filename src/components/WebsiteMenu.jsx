@@ -14,7 +14,7 @@ const WebsiteMenu = ({openModalWindowsFunc}) => (
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-      {/* TODO: need to make it style as a NavItem, there is no support for router 
+      {/* TODO: Enable when items + style are ready
       <Link to='/menu'>Menu</Link>
       */}
       <Nav activeKey={2}>

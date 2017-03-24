@@ -5,7 +5,7 @@ import Carousel from './Carousel';
 import Footer from './Footer';
 import Order from './Order';
 import Schedule from './Schedule';
-import Pizzas from './Pizzas';
+import MenuSelection from './MenuSelection';
 
 const ORDER = 'ORDER';
 const SCHEDULE = 'SCHEDULE';
@@ -42,6 +42,7 @@ class HomePage extends React.Component {
   }
 
   render() {
+    let selection = this.props.match.params.selection;
     let openModalWindowsFunc = {
       order: this.open.bind(this, ORDER),
       schedule: this.open.bind(this, SCHEDULE),
@@ -58,7 +59,7 @@ class HomePage extends React.Component {
           showModal={this.state.showSchedule}
           closeModal={this.close.bind(this, SCHEDULE)}
         />
-        <Pizzas />
+        <MenuSelection selection={selection} />
         <Footer />
       </div>
     );

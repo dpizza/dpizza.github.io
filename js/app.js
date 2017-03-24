@@ -32512,7 +32512,7 @@ var WebsiteMenu = function WebsiteMenu(_ref) {
   var openModalWindowsFunc = _ref.openModalWindowsFunc;
   return _react2.default.createElement(
     _Navbar2.default,
-    { inverse: true, collapseOnSelect: true, fixedTop: true },
+    { inverse: true, fixedTop: true },
     _react2.default.createElement(
       _Navbar2.default.Header,
       null,
@@ -32540,7 +32540,7 @@ var WebsiteMenu = function WebsiteMenu(_ref) {
         ),
         _react2.default.createElement(
           _NavItem2.default,
-          { eventKey: 2, href: '#pizzas', className: 'active' },
+          { eventKey: 2, className: 'active', href: '#pizzas' },
           'Pizzas'
         )
       ),

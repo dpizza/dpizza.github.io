@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 
 const WebsiteMenu = ({openModalWindowsFunc}) => (
-  <Navbar inverse collapseOnSelect fixedTop>
+  <Navbar inverse fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
         <a href="#">D'Pizza</a>
@@ -15,7 +15,7 @@ const WebsiteMenu = ({openModalWindowsFunc}) => (
     <Navbar.Collapse>
       <Nav activeKey={2}>
         <NavItem eventKey={1} href="#menu">Menu</NavItem>
-        <NavItem eventKey={2} href="#pizzas" className="active">Pizzas</NavItem>
+        <NavItem eventKey={2} className="active" href="#pizzas">Pizzas</NavItem>
       </Nav>
       <Nav pullRight>
         <NavItem eventKey={1} onClick={openModalWindowsFunc.order}>Ordena</NavItem>

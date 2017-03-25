@@ -35599,7 +35599,7 @@ var HomePage = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_WebsiteMenu2.default, { openModalWindowsFunc: openModalWindowsFunc }),
+        _react2.default.createElement(_WebsiteMenu2.default, { openModalWindowsFunc: openModalWindowsFunc, selection: selection }),
         _react2.default.createElement(_Carousel2.default, null),
         _react2.default.createElement(_Order2.default, {
           showModal: this.state.showOrder,
@@ -36109,8 +36109,35 @@ var _reactRouterDom = __webpack_require__(163);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var WebsiteMenu = function WebsiteMenu(_ref) {
-  var openModalWindowsFunc = _ref.openModalWindowsFunc;
+var NavLink = function NavLink(_ref) {
+  var className = _ref.className,
+      to = _ref.to,
+      text = _ref.text;
+
+  return _react2.default.createElement(
+    'div',
+    { className: className },
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: to },
+      text
+    )
+  );
+};
+
+var WebsiteMenu = function WebsiteMenu(_ref2) {
+  var openModalWindowsFunc = _ref2.openModalWindowsFunc,
+      selection = _ref2.selection;
+
+
+  var activeKey = 2;
+  var navItemClass = 'nav-item';
+
+  if (selection && selection === 'menu') {
+    activeKey = 1;
+    navItemClass = 'nav-item active';
+  }
+
   return _react2.default.createElement(
     _Navbar2.default,
     { inverse: true, fixedTop: true },
@@ -36133,7 +36160,7 @@ var WebsiteMenu = function WebsiteMenu(_ref) {
       null,
       _react2.default.createElement(
         _Nav2.default,
-        { activeKey: 2 },
+        { activeKey: activeKey },
         _react2.default.createElement(
           _NavItem2.default,
           { eventKey: 2, href: '/#pizzas' },
@@ -36156,6 +36183,11 @@ var WebsiteMenu = function WebsiteMenu(_ref) {
       )
     )
   );
+};
+
+WebsiteMenu.propTypes = {
+  openModalWindowsFunc: _react2.default.PropTypes.object.isRequired,
+  selection: _react2.default.PropTypes.string
 };
 
 exports.default = WebsiteMenu;

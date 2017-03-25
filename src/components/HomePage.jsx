@@ -49,7 +49,7 @@ class HomePage extends React.Component {
     };
     return (
       <div>
-        <WebsiteMenu openModalWindowsFunc={openModalWindowsFunc} />
+        <WebsiteMenu openModalWindowsFunc={openModalWindowsFunc} selection={selection} />
         <Carousel />
         <Order
           showModal={this.state.showOrder}

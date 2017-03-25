@@ -1,0 +1,38 @@
+{
+    "pastas": [{
+            "name": "Boloña",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "offers": [{
+                "price": "BS. 2.500,00"
+            }]
+        },
+        {
+            "name": "Carbonara",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "offers": [{
+                "price": "BS. 2.500,00"
+            }]
+        },
+        {
+            "name": "Pesto",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "offers": [{
+                "price": "BS. 2.500,00"
+            }]
+        },
+        {
+            "name": "Jardinera",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "offers": [{
+                "price": "BS. 2.500,00"
+            }]
+        },
+        {
+            "name": "Vegetariana",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "offers": [{
+                "price": "BS. 2.500,00"
+            }]
+        }
+    ]
+}

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import WebsiteMenu from './WebsiteMenu';
-import Carousel from './Carousel';
 import Footer from './Footer';
 import Order from './Order';
 import Schedule from './Schedule';
@@ -50,7 +49,6 @@ class HomePage extends React.Component {
     return (
       <div>
         <WebsiteMenu openModalWindowsFunc={openModalWindowsFunc} selection={selection} />
-        <Carousel />
         <Order
           showModal={this.state.showOrder}
           closeModal={this.close.bind(this, ORDER)}

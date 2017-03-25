@@ -35518,10 +35518,6 @@ var _WebsiteMenu = __webpack_require__(395);
 
 var _WebsiteMenu2 = _interopRequireDefault(_WebsiteMenu);
 
-var _Carousel = __webpack_require__(385);
-
-var _Carousel2 = _interopRequireDefault(_Carousel);
-
 var _Footer = __webpack_require__(386);
 
 var _Footer2 = _interopRequireDefault(_Footer);
@@ -35600,7 +35596,6 @@ var HomePage = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(_WebsiteMenu2.default, { openModalWindowsFunc: openModalWindowsFunc, selection: selection }),
-        _react2.default.createElement(_Carousel2.default, null),
         _react2.default.createElement(_Order2.default, {
           showModal: this.state.showOrder,
           closeModal: this.close.bind(this, ORDER)
@@ -35628,25 +35623,43 @@ exports.default = HomePage;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _PageHeader = __webpack_require__(266);
+
+var _PageHeader2 = _interopRequireDefault(_PageHeader);
+
+var _ProductList = __webpack_require__(392);
+
+var _ProductList2 = _interopRequireDefault(_ProductList);
+
+var _data = __webpack_require__(398);
+
+var _data2 = _interopRequireDefault(_data);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Menu = function Menu() {
-    return _react2.default.createElement(
+  return _react2.default.createElement(
+    'div',
+    { id: 'pastas', className: 'container' },
+    _react2.default.createElement(
+      _PageHeader2.default,
+      null,
+      _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement(
-            'h1',
-            null,
-            'Aqui va el menu'
-        )
-    );
+        { className: 'menu-header' },
+        'Pastas ',
+        _react2.default.createElement('br', null)
+      )
+    ),
+    _react2.default.createElement(_ProductList2.default, { products: _data2.default.pastas })
+  );
 };
 
 exports.default = Menu;
@@ -35778,6 +35791,10 @@ var _PageHeader = __webpack_require__(266);
 
 var _PageHeader2 = _interopRequireDefault(_PageHeader);
 
+var _Carousel = __webpack_require__(385);
+
+var _Carousel2 = _interopRequireDefault(_Carousel);
+
 var _ProductList = __webpack_require__(392);
 
 var _ProductList2 = _interopRequireDefault(_ProductList);
@@ -35791,29 +35808,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Pizzas = function Pizzas() {
   return _react2.default.createElement(
     'div',
-    { id: 'pizzas', className: 'container' },
+    null,
+    _react2.default.createElement(_Carousel2.default, null),
     _react2.default.createElement(
-      _PageHeader2.default,
-      null,
-      ' ',
+      'div',
+      { id: 'pizzas', className: 'container' },
       _react2.default.createElement(
-        'div',
-        { className: 'menu-header' },
-        'Pizzas ',
-        _react2.default.createElement('br', null)
-      )
-    ),
-    _react2.default.createElement(_ProductList2.default, { products: _data2.default.pizzas }),
-    _react2.default.createElement(
-      _PageHeader2.default,
-      null,
+        _PageHeader2.default,
+        null,
+        ' ',
+        _react2.default.createElement(
+          'div',
+          { className: 'menu-header' },
+          'Pizzas ',
+          _react2.default.createElement('br', null)
+        )
+      ),
+      _react2.default.createElement(_ProductList2.default, { products: _data2.default.pizzas }),
       _react2.default.createElement(
-        'div',
-        { className: 'menu-header' },
-        'Haga su Pizza'
-      )
-    ),
-    _react2.default.createElement(_ProductList2.default, { products: _data2.default.extras })
+        _PageHeader2.default,
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'menu-header' },
+          'Haga su Pizza'
+        )
+      ),
+      _react2.default.createElement(_ProductList2.default, { products: _data2.default.extras })
+    )
   );
 };
 
@@ -35919,16 +35941,17 @@ var ProductList = function ProductList(_ref) {
     _Grid2.default,
     { bsClass: 'grid-layout' },
     products.map(function (product, index) {
+      var image = product.image ? _react2.default.createElement('img', { src: product.image.src }) : null;
       return _react2.default.createElement(
         'div',
         { key: index },
         _react2.default.createElement(
           _Row2.default,
           null,
-          containsImages && product.image ? _react2.default.createElement(
+          containsImages ? _react2.default.createElement(
             _Col2.default,
             { md: config.col1 },
-            _react2.default.createElement('img', { src: product.image.src })
+            image
           ) : null,
           _react2.default.createElement(
             _Col2.default,
@@ -36129,12 +36152,11 @@ var WebsiteMenu = function WebsiteMenu(_ref2) {
   var openModalWindowsFunc = _ref2.openModalWindowsFunc,
       selection = _ref2.selection;
 
-
-  var activeKey = 2;
+  var activeKey = 1;
   var navItemClass = 'nav-item';
 
   if (selection && selection === 'menu') {
-    activeKey = 1;
+    activeKey = 2;
     navItemClass = 'nav-item active';
   }
 
@@ -36163,10 +36185,11 @@ var WebsiteMenu = function WebsiteMenu(_ref2) {
         { activeKey: activeKey },
         _react2.default.createElement(
           _NavItem2.default,
-          { eventKey: 2, href: '/#pizzas' },
+          { eventKey: 1, href: '/#pizzas' },
           'Pizzas'
         )
       ),
+      _react2.default.createElement(NavLink, { className: navItemClass, to: '/menu', text: 'Menu' }),
       _react2.default.createElement(
         _Nav2.default,
         { pullRight: true },
@@ -36491,6 +36514,60 @@ module.exports = {
 
 module.exports = __webpack_require__(169);
 
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"pastas": [
+		{
+			"name": "Boloña",
+			"description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+			"offers": [
+				{
+					"price": "BS. 2.500,00"
+				}
+			]
+		},
+		{
+			"name": "Carbonara",
+			"description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+			"offers": [
+				{
+					"price": "BS. 2.500,00"
+				}
+			]
+		},
+		{
+			"name": "Pesto",
+			"description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+			"offers": [
+				{
+					"price": "BS. 2.500,00"
+				}
+			]
+		},
+		{
+			"name": "Jardinera",
+			"description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+			"offers": [
+				{
+					"price": "BS. 2.500,00"
+				}
+			]
+		},
+		{
+			"name": "Vegetariana",
+			"description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+			"offers": [
+				{
+					"price": "BS. 2.500,00"
+				}
+			]
+		}
+	]
+};
 
 /***/ })
 /******/ ]);

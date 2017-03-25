@@ -21,10 +21,11 @@ const getOffers = offers => {
     OffersHtmlValue.push(
       <Row key={index++}>
         <Col md={5}>
-        {/* Disable while online order is implemented
+          {/* Disable while online order is implemented
           <Button bsStyle="warning" bsSize="xsmall">
             +
-          </Button> */}
+          </Button> */
+          }
           <span>
             {' '}
             {offer.price}
@@ -37,7 +38,8 @@ const getOffers = offers => {
           ? <Col md={7}>
               {/* Disable while online orders is implemented
               <Button bsStyle="warning" bsSize="xsmall">+</Button> 
-              */}
+              */
+              }
               <span> {offer2.price} <small>{offer2.name}</small></span>
             </Col>
           : ''}
@@ -53,12 +55,13 @@ const ProductList = ({products, containsImages}) => {
   return (
     <Grid bsClass="grid-layout">
       {products.map((product, index) => {
+        let image = product.image ? <img src={product.image.src} /> : null;
         return (
           <div key={index}>
             <Row>
-              { containsImages && product.image
+              {containsImages
                 ? <Col md={config.col1}>
-                    <img src={product.image.src} />
+                    {image}
                   </Col>
                 : null}
               <Col md={config.col2}>

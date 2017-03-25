@@ -14,12 +14,11 @@ const NavLink = ({className, to, text}) => {
 };
 
 const WebsiteMenu = ({openModalWindowsFunc, selection}) => {
-
-  let activeKey = 2;
+  let activeKey = 1;
   let navItemClass = 'nav-item';
 
   if (selection && selection === 'menu') {
-    activeKey = 1;
+    activeKey = 2;
     navItemClass = 'nav-item active';
   }
 
@@ -32,14 +31,13 @@ const WebsiteMenu = ({openModalWindowsFunc, selection}) => {
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
-        {/* TODO: Enable when items + style are ready         
-        <NavLink className={navItemClass} to="/menu" text="Menu" />
-         */}
         <Nav activeKey={activeKey}>
-          <NavItem eventKey={2} href="/#pizzas">
+          <NavItem eventKey={1} href="/#pizzas">
             Pizzas
           </NavItem>
         </Nav>
+        {/* TODO: Enable when items + style are ready */}
+        <NavLink className={navItemClass} to="/menu" text="Menu" />
         <Nav pullRight>
           <NavItem eventKey={1} onClick={openModalWindowsFunc.order}>
             Ordena

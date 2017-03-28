@@ -38030,7 +38030,7 @@ module.exports = {
 	"pastas": [
 		{
 			"name": "Boloña",
-			"description": "Elije la pasta: Espaguetis, tornillos o cortas",
+			"description": "Elige la pasta: Espaguetis, tornillos o cortas",
 			"offers": [
 				{
 					"name": "Incluye pan y refresco",
@@ -38040,7 +38040,7 @@ module.exports = {
 		},
 		{
 			"name": "Carbonara",
-			"description": "Elije la pasta: Espaguetis, tornillos o cortas",
+			"description": "Elige la pasta: Espaguetis, tornillos o cortas",
 			"offers": [
 				{
 					"name": "Incluye pan y refresco",
@@ -38050,7 +38050,7 @@ module.exports = {
 		},
 		{
 			"name": "Pesto",
-			"description": "Elije la pasta: Espaguetis, tornillos o cortas",
+			"description": "Elige la pasta: Espaguetis, tornillos o cortas",
 			"offers": [
 				{
 					"name": "Incluye pan y refresco",
@@ -38060,7 +38060,7 @@ module.exports = {
 		},
 		{
 			"name": "Jardinera",
-			"description": "Elije la pasta: Espaguetis, tornillos o cortas",
+			"description": "Elige la pasta: Espaguetis, tornillos o cortas",
 			"offers": [
 				{
 					"name": "Incluye pan y refresco",
@@ -38070,7 +38070,7 @@ module.exports = {
 		},
 		{
 			"name": "Vegetariana",
-			"description": "Elije la pasta: Espaguetis, tornillos o cortas",
+			"description": "Elige la pasta: Espaguetis, tornillos o cortas",
 			"offers": [
 				{
 					"name": "Incluye pan y refresco",

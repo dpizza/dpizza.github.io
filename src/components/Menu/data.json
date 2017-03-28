@@ -1,37 +1,111 @@
 {
     "pastas": [{
             "name": "Boloña",
-            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas",
             "offers": [{
+                "name": "Incluye pan y refresco",
                 "price": "BS. 2.500,00"
             }]
         },
         {
             "name": "Carbonara",
-            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas",
             "offers": [{
+                "name": "Incluye pan y refresco",
                 "price": "BS. 2.500,00"
             }]
         },
         {
             "name": "Pesto",
-            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas",
             "offers": [{
+                "name": "Incluye pan y refresco",
                 "price": "BS. 2.500,00"
             }]
         },
         {
             "name": "Jardinera",
-            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas",
             "offers": [{
+                "name": "Incluye pan y refresco",
                 "price": "BS. 2.500,00"
             }]
         },
         {
             "name": "Vegetariana",
-            "description": "Elije la pasta: Espaguetis, tornillos o cortas (incluye pan y refresco)",
+            "description": "Elije la pasta: Espaguetis, tornillos o cortas",
             "offers": [{
+                "name": "Incluye pan y refresco",
                 "price": "BS. 2.500,00"
+            }]
+        }
+    ],
+    "hamburguesas": [{
+            "name": "Hamburguesa: Texana",
+            "description": "Carne de res de primera, jamon de espalda, queso mozarella, lechuga, cebolla, tomate y salsas al gusto",
+            "offers": [{
+                "name": "Incluye refresco",
+                "price": "BS. 3.500,00"
+            }]
+        },
+        {
+            "name": "Hamburguesa: Texana Mixta",
+            "description": "Hamburguesa texana con chuleta ahumada o pechuga de pollo",
+            "offers": [{
+                "name": "Incluye refresco",
+                "price": "BS. 4.500,00"
+            }]
+        },
+        {
+            "name": "Choripan",
+            "offers": [{
+                "name": "Incluye refresco",
+                "price": "BS. 2.200,00"
+            }]
+        },
+        {
+            "name": "Shawarma",
+            "description": "Carne de solomo, pechuga de pollo o mixto",
+            "offers": [{
+                "name": "Incluye refresco",
+                "price": "BS. 2.500,00"
+            }]
+        }
+    ],
+    "bebidas": [{
+            "name": "Refresco: mini bomba",
+            "offers": [{
+                    "price": "BS. 2.000,00"
+                },
+                {
+                    "price": "BS. 2.500,00"
+                }, {
+                    "name": "Litro y medio",
+                    "price": "BS. 4.000,00"
+                },
+                {
+                    "name": "Dos litros",
+                    "price": "BS. 4.500,00"
+                }
+            ]
+        },
+        {
+            "name": "Neastea",
+            "offers": [{
+                    "name": "Vaso",
+                    "price": "Bs. 800,00"
+                },
+                {
+                    "name": "Jarra",
+                    "price": "Bs. 2.800,00"
+                }
+            ]
+        },
+        {
+            "name": "Jugos Naturales",
+            "offers": [{
+                "name": "Vaso",
+                "price": "Bs. 700,00"
             }]
         }
     ]

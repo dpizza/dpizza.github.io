@@ -3,13 +3,16 @@ import React from 'react';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
-import {Link} from 'react-router-dom';
+import NavDropdown from 'react-bootstrap/lib/NavDropdown';
+import MenuItem from 'react-bootstrap/lib/MenuItem';
 
-const NavLink = ({className, to, text}) => {
+import {HashLink as Link} from 'react-router-hash-link';
+
+const NavLink = ({to, text}) => {
   return (
-    <div className={className}>
+    <li>
       <Link to={to}>{text}</Link>
-    </div>
+    </li>
   );
 };
 
@@ -35,9 +38,15 @@ const WebsiteMenu = ({openModalWindowsFunc, selection}) => {
           <NavItem eventKey={1} href="/#pizzas">
             Pizzas
           </NavItem>
+          {/* TODO: Enable when items + style are ready */}
+          <NavDropdown eventKey={2} title="Menu" id="basic-nav-dropdown">
+            <NavLink to="/menu#pastas" text="Pastas" />
+            <MenuItem divider />
+            <NavLink to="/menu#hamburguesas" text="Hamburguesas / Choripan / Shawarma" />
+            <MenuItem divider />
+            <NavLink to="/menu#bebidas" text="Bebidas" />
+          </NavDropdown>
         </Nav>
-        {/* TODO: Enable when items + style are ready */}
-        <NavLink className={navItemClass} to="/menu" text="Menu" />
         <Nav pullRight>
           <NavItem eventKey={1} onClick={openModalWindowsFunc.order}>
             Ordena

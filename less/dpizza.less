@@ -104,10 +104,12 @@ hr {
     }
 }
 
-.active {
-    background-color: @theme-color;   
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-    a {
-        color: white;
-    }
+.dropdown.open .dropdown-toggle{
+    background:#4c3f3f !important; 
+    color:white !important;
+}
+
+.active.dropdown.open .dropdown-toggle{
+    background: @theme-color !important; 
+    color:white !important;
 }

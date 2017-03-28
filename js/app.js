@@ -37993,8 +37993,7 @@ var WebsiteMenu = function WebsiteMenu(_ref2) {
           _react2.default.createElement(_MenuItem2.default, { divider: true }),
           _react2.default.createElement(NavLink, { to: '/menu#hamburguesas', text: 'Hamburguesas / Choripan / Shawarma' }),
           _react2.default.createElement(_MenuItem2.default, { divider: true }),
-          _react2.default.createElement(NavLink, { to: '/menu#bebidas', text: 'Bebidas' }),
-          _react2.default.createElement(_MenuItem2.default, { divider: true })
+          _react2.default.createElement(NavLink, { to: '/menu#bebidas', text: 'Bebidas' })
         )
       ),
       _react2.default.createElement(

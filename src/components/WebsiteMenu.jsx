@@ -45,6 +45,7 @@ const WebsiteMenu = ({openModalWindowsFunc, selection}) => {
             <NavLink to="/menu#hamburguesas" text="Hamburguesas / Choripan / Shawarma" />
             <MenuItem divider />
             <NavLink to="/menu#bebidas" text="Bebidas" />
+            <MenuItem divider />
           </NavDropdown>
         </Nav>
         <Nav pullRight>

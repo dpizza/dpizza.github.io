@@ -37371,9 +37371,16 @@ var PageFooter = function PageFooter() {
           _react2.default.createElement(
             'span',
             null,
-            _react2.default.createElement('i', { className: 'glyphicon glyphicon-map-marker' }),
-            ' ',
-            'Av. Fern\xE1ndez Pe\xF1a, centro comercial trapiche local 04. Ejido, estado M\xE9rida'
+            _react2.default.createElement(
+              'a',
+              {
+                href: 'https://www.google.com/maps/place/Restaurant+D+PIZZA/@8.5719975,-71.2600409,12z/data=!4m8!1m2!2m1!1sD\'Pizza+Ejido+Merida!3m4!1s0x0:0x84e5c4d011958208!8m2!3d8.5498515!4d-71.2359953',
+                title: 'Ver direcci\xF3n'
+              },
+              _react2.default.createElement('i', { className: 'glyphicon glyphicon-map-marker' }),
+              ' ',
+              'Av. Fern\xE1ndez Pe\xF1a, centro comercial trapiche local 04. Ejido, estado M\xE9rida'
+            )
           ),
           ' ',
           _react2.default.createElement('br', null),

@@ -11,8 +11,6 @@ Web technologies used to build this website:
 * babel and webpack 
 * react-bootstrap components 
 
-# Development
-
 ## Setup
 `$ yarn install`
 
@@ -21,5 +19,7 @@ Web technologies used to build this website:
 
 ## Start local webserver 
 `$ npm install -g webpack`
+
 `$ npm install webpack-dev-server -g`
+
 `$ webpack-dev-server`

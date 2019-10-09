@@ -10,3 +10,16 @@ Web technologies used to build this website:
 * react react-dom 
 * babel and webpack 
 * react-bootstrap components 
+
+# Development
+
+## Setup
+`$ yarn install`
+
+## Run
+`$ yarn start`
+
+## Start local webserver 
+`$ npm install -g webpack`
+`$ npm install webpack-dev-server -g`
+`$ webpack-dev-server`

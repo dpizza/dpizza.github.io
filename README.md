@@ -8,4 +8,4 @@ Maria Angelica Marcano mariangemarcano@gmail.com
 
 Geronimo Marcano marcanogj@gmail.com
 
-[Development](docs/index.md)
+[Read more about the development](docs/index.md)
